@@ -216,6 +216,8 @@ angular.module('cfp.loadingBar', [])
         }
 
         var $parent = $document.find($parentSelector).eq(0);
+        // Add the loader as the last element
+        var afterElement = $parent.find('div').eq(-1);
         $timeout.cancel(completeTimeout);
 
         // do not continually broadcast the started event:
@@ -227,7 +229,7 @@ angular.module('cfp.loadingBar', [])
         started = true;
 
         if (includeBar) {
-          $animate.enter(loadingBarContainer, $parent);
+          $animate.enter(loadingBarContainer, $parent, afterElement);
         }
 
         if (includeSpinner) {
